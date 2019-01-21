@@ -2,6 +2,34 @@
 // Download BAWAGPSK and Easybank Transactions and import into database
 // The Android App API is used (inofficially) for downloading this data
 // For details see: https://blog.haschek.at/2018/reverse-engineering-your-mobile-banking-app.html
+/*
+Data structure for insert of transactions (mariadb/mysql):
+
+DROP TABLE `ImportTransactions`;
+CREATE TABLE `ImportTransactions` (
+`ID` INT NOT NULL AUTO_INCREMENT,
+`AccountNum` VARCHAR(35) NOT NULL,
+`StatementNumber` VARCHAR(20) NOT NULL,
+`Position` VARCHAR(20) NOT NULL,
+`ForeignId` INT NULL DEFAULT NULL,
+`Period` VARCHAR(255) NULL DEFAULT NULL,
+`CardNumber` DECIMAL(2) NULL DEFAULT NULL,
+`TransactionDate` DATETIME NOT NULL,
+`Description` VARCHAR(255) NULL DEFAULT NULL,
+`Place` VARCHAR(255) NULL DEFAULT NULL,
+`OriginalCurrency` VARCHAR(10) NULL DEFAULT NULL,
+`OriginalAmount` DOUBLE NULL DEFAULT NULL,
+`TotalAmount` DOUBLE NULL DEFAULT NULL,
+`ExchangeRate` DOUBLE NULL DEFAULT NULL,
+`TransactionAmount` DOUBLE NOT NULL,
+`ProcessingFee` DOUBLE NULL DEFAULT NULL,
+`CashWithdrawalFee` DOUBLE NULL DEFAULT NULL,
+`ClearingDate` DATETIME NULL DEFAULT NULL,
+`ImportDate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+PRIMARY KEY (`ID`)
+)
+*/
+
 include_once('easybank.class.php');
 include_once('credentials.db.php');
 include_once('credentials.php');
