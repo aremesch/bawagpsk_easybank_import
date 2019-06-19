@@ -40,9 +40,9 @@ if ($conn->connect_error) {
     die("Connect failed: ".$conn->connect_error);
 }
 
-foreach([ "BAWAG", "EASYBANK" ] as $institute) {
-	$e = new EasyBank($credentials[$institute]['id'],$credentials[$institute]['pin']);
-	$e->setInstitute($institute);
+foreach($credentials as $c) {
+	$e = new EasyBank($c['id'],$c['pin']);
+	$e->setInstitute($c['institute']);
 	$e->logIn();
 	$accounts = $e->getAccounts();
 	$i = 0;
